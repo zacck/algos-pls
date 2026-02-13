@@ -8,6 +8,6 @@ Chapter 1 - Basics
 - [x] convert_to_numbers 
 - [x] convert_to_letters 
 - [x] get_intersection
-- [ ] get_union
+- [X] get_union
 - [ ] count_characters
 - [ ] is_prime

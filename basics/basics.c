@@ -9,6 +9,7 @@ bool check_if_symmetric(char *my_string);
 void convert_to_numbers(char *some_string, size_t len);
 void convert_to_letters(int *some_numbers, size_t len);
 void get_intersection(int *first_arr, size_t first, int* second_arr, size_t second);
+void get_union(int *first_arr, size_t first, int *second_arr, size_t second); 
 /*End Prototypes*/
 
 int main() {
@@ -37,9 +38,68 @@ int main() {
 
 	int second_numbers[] = {4, 4, 4, 7};
 
-	get_intersection(first_numbers, 4, second_numbers, 3);
+	get_intersection(first_numbers, 4, second_numbers, 4);
+
+	int first_union_numbers[] =  {1, 2, 3 ,4};
+
+	int second_union_numbers[] = {4, 3, 19, 9, 1};
+
+	get_union(first_union_numbers, 4, second_union_numbers, 5);
 
 }
+
+void  get_union(int *first_arr, size_t first, int* second_arr, size_t second) {
+	size_t total = 0;  
+	total = first + second; 
+
+	int result_arr[total]; 
+
+	for(int i = 0; i < total; i++ ) {
+		result_arr[i] = -9999; 
+	}
+
+	int t_index = 0;
+
+	for(int k = 0; k < first; k++) {
+		result_arr[t_index] =  first_arr[k];
+		t_index++;
+	}
+
+	for(int l = 0; l < second; l++) {
+		result_arr[t_index] = second_arr[l];
+		t_index++;
+	}
+
+
+	printf("[");
+	for(int p = 0; p < t_index; p++) {
+		printf("%d, ", result_arr[p]);
+	}
+	printf("]\n");
+
+
+	int union_arr[total];
+
+	//dedup into union_arr
+	for(int m = 0; m < t_index; m++) {
+		for(int n = t_index; n >= 0; n--) {
+			if((result_arr[m] == result_arr[n] && n != m  )) {
+			 	union_arr[n] = -9999;	
+			} else {
+				union_arr[m] = result_arr[m];
+			}
+		}
+	}		
+
+	printf("[");
+	for(int p = 0; p < t_index; p++) {
+		if(union_arr[p] != -9999)
+			printf("%d, ", union_arr[p]);
+	}
+	printf("]\n");
+
+}
+
 
 void  get_intersection(int *first_arr, size_t first, int* second_arr, size_t second) {
 	size_t longer = 0;  
